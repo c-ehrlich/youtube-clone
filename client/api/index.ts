@@ -72,3 +72,8 @@ export function updateVideo({
 export function getVideos() {
   return axios.get(videosBase).then(res => res.data);
 }
+
+export function getVideo(videoId: string) {
+  return axios.get(`${videosBase}/${videoId}`).then(res => res.data);
+
+}

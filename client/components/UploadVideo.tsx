@@ -18,6 +18,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation } from 'react-query';
 import { ArrowBigUpLine } from 'tabler-icons-react';
 import { updateVideo, uploadVideo } from '../api';
+import { useVideo } from '../context/videos';
 import { Video } from '../types';
 
 function EditVideoForm({
@@ -27,6 +28,7 @@ function EditVideoForm({
   videoId: string;
   setOpened: Dispatch<SetStateAction<boolean>>;
 }) {
+  const {refetch} = useVideo()
   const form = useForm({
     initialValues: {
       title: '',
@@ -42,6 +44,7 @@ function EditVideoForm({
   >(updateVideo, {
     onSuccess: () => {
       setOpened(false);
+      refetch();
     },
   });
 
