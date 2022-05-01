@@ -2,7 +2,7 @@ import busboy from 'busboy';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { Video } from './video.model';
-import { createVideo, findVideo } from './video.service';
+import { createVideo, findVideo, findVideos } from './video.service';
 import fs from 'fs';
 import { UpdateVideoBody, UpdateVideoParams } from './video.schema';
 
@@ -89,4 +89,9 @@ export async function updateVideoHandler(
   await video.save();
 
   return res.status(StatusCodes.OK).send(video);
+}
+
+export async function findVideosHandler(_: Request, res: Response){
+  const videos = await findVideos()
+  return res.status(StatusCodes.OK).send(videos);
 }
