@@ -1,11 +1,14 @@
 import { ReactElement } from 'react'
-import HomePageLayout from '../layout/home'
+import { useVideo } from '../context/videos'
+import HomePageLayout from '../layout/Home'
 import styles from '../styles/Home.module.css'
 
 const Home = () => {
+  const {videos} = useVideo();
+
   return (
     <div className={styles.container}>
-      test
+      {JSON.stringify(videos)}
     </div> 
   )
 }
