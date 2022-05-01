@@ -1,9 +1,23 @@
 import express from 'express';
+import cookieParser from "cookie-parser";
+import cors from 'cors'
 import { connectToDatabase, disconnectFromDatabase } from './utils/database';
 import logger from './utils/logger';
+import { CORS_ORIGIN } from './constants';
+import helmet from 'helmet';
 
 const PORT = process.env.PORT || 4000;
+
 const app = express();
+
+app.use(cookieParser());
+app.use(express.json()); // replaces bodyparser
+app.use(cors({
+  origin: CORS_ORIGIN,
+  credentials: true,
+}))
+app.use(helmet());
+
 const server = app.listen(PORT, async () => {
   await connectToDatabase();
   logger.info(`Server listening at http://localhost:${PORT}`);
