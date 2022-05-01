@@ -7,7 +7,7 @@ export const registerUserSchema = {
     }),
     email: string({
       required_error: 'username is required',
-    }),
+    }).email('Must be a valid email'),
     password: string({
       required_error: 'username is required',
     })

@@ -11,6 +11,7 @@ import argon2 from 'argon2';
 })
 
 export class User {
+  // mongo puts an index on every unique field
   @prop({ required: true, unique: true })
   public username: string;
 

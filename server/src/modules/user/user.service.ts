@@ -5,3 +5,7 @@ export async function createUser(
 ) {
   return UserModel.create(user);
 }
+
+export async function findUserByEmail(email: User['email']) {
+  return UserModel.findOne({ email });
+}
