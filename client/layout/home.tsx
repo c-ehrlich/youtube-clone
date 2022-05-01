@@ -1,8 +1,13 @@
-import { AppShell, Box, Header, Navbar } from '@mantine/core';
+import { Anchor, AppShell, Box, Group, Header, Navbar } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import UploadVideo from '../components/UploadVideo';
+import { useMe } from '../context/me';
 
 function HomePageLayout({ children }: { children: React.ReactNode }) {
+  const { user, refetch } = useMe();
+
   return (
     <AppShell
       padding='md'
@@ -15,11 +20,26 @@ function HomePageLayout({ children }: { children: React.ReactNode }) {
         // TODO define header somewhere else so we can
         // use it in multiple layouts
         <Header height={60} p='xs'>
-          <Box>
+          <Group>
             <Box>
               <Image src='/logo.png' alt='logo' width='100px' height='40px' />
             </Box>
-          </Box>
+
+            {user ? (
+              <>
+                <UploadVideo />
+              </>
+            ) : (
+              <>
+                <Link href='/auth/login' passHref>
+                  <Anchor>Login</Anchor>
+                </Link>
+                <Link href='/auth/register' passHref>
+                  <Anchor>Register</Anchor>
+                </Link>
+              </>
+            )}
+          </Group>
         </Header>
       }
     >
