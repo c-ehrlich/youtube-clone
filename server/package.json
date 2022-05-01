@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --exit-child --transpile-only src/main.ts"
+  },
   "dependencies": {
     "@mantine/form": "^4.2.1",
     "@typegoose/typegoose": "^9.8.1",
